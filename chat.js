@@ -3,6 +3,8 @@ class ChatRoom {
     this.room = room;
     this.username = username;
     this.chats = db.collection("chat_rooms");
+    this.unsub;
+    //creating a property without a value so we can unsubscribe and subscribe later upon change in chat room.
   }
   async addChat(message) {
     // format a chat object
@@ -18,14 +20,24 @@ class ChatRoom {
     return response;
   }
   getChats(callback) {
-    this.chats.onSnapshot((snapshot) => {
-      snapshot.docChanges.forEach((change) => {
-        if (change.type === "added") {
-          // update UI
-          callback(change.doc.data);
-        }
+    this.unsub = this.chats //When invoked will unsub from changes. Returns a function. 
+      .where("room", "==", this.room)
+      .orderBy("created_at", "desc")
+      .onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added") {
+            // update UI
+            callback(change.doc.data);
+          }
+        });
       });
-    });
+  }
+  updateName(username) {
+    this.username = username;
+  }
+  updateRoom(room) {
+    this.room = room;
+    this.unsub()
   }
 }
 const chatroom = new ChatRoom("general", "Dmitriy");
@@ -45,4 +57,10 @@ Updating The Room Upon Clicking
 Notes
   docChanges returns an Array with changes. 
   forEach is called on the Array
+where()
+  The method allows us to get documents from a certain collection where a certain condition is true.
+  Arguments
+    1. The property we want to assess
+    2. Operator like "==" We use double equals in FireStore not triple equals. 
+    3. The property we want to compare to.
 */

@@ -1,0 +1,16 @@
+.container {
+  max-width: 600px;
+}
+
+.btn {
+  background: lightblue;
+  color: white;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.btn:focus {
+  outline: none !important;
+}
+
+/* We use !important to override any previous styling. */

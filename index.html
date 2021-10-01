@@ -1,12 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat Room</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Chat Room</title>
+  </head>
+  <body>
+    <!-- Container and Title Container holds all of the content -->
+    <div class="container my-4">
+      <h1 class="my-4 text-center">Chat Room</h1>
+      <!-- Buttons for Chat Rooms -->
+      <div class="chat-rooms mb-3 text-center">
+        <div class="my-2">Choose a Chat Room</div>
+        <button class="btn" id="general">#general</button>
+        <button class="btn" id="web_development">#web_development</button>
+        <button class="btn" id="audiobooks">#audiobooks</button>
+        <button class="btn" id="music">#music</button>
+        <button class="btn" id="movies">#movies</button>
+        <button class="btn" id="tv_shows">#tv_shows</button>
+      </div>
+
+      <!-- Chat List / Window -->
+
+      <div class="chat-window">
+        <ul class="chat-list list-group"></ul>
+      </div>
+      <!-- New Chat Form -->
+
+      <form class="new-chat my-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Type Your Message:</div>
+          </div>
+          <input type="text" id="message" class="form-control" required />
+          <div class="input-group-append">
+            <input type="submit" class="btn" value="send" />
+          </div>
+        </div>
+      </form>
+
+      <!-- Update Name Form -->
+      <form class="new-name my-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Update Name:</div>
+          </div>
+          <input type="text" id="name" class="form-control" required />
+          <div class="input-group-append">
+            <input type="submit" class="btn" value="update" />
+          </div>
+        </div>
+        <div class="update-message"></div>
+      </form>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+    <script>
+      // Initialize Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyAgJ4e8yf65itWZo_brvXjrALVOAW7kkF4",
+        authDomain: "fir-database-8b172.firebaseapp.com",
+        projectId: "fir-database-8b172",
+        storageBucket: "fir-database-8b172.appspot.com",
+        messagingSenderId: "1060165231553",
+        appId: "1:1060165231553:web:1bfa2ff13f23fc582a8540",
+        measurementId: "G-DTBBPGNY78",
+      };
+      firebase.initializeApp(config); //starts our connection with the backend.
+      const db = firebase.firestore(); //initializing the firestore connection
+    </script>
+    <script src="app.js"></script>
+    <script src="chat.js"></script>
+    <script src="ui.js"></script>
+  </body>
 </html>

@@ -20,7 +20,7 @@ class ChatRoom {
     return response;
   }
   getChats(callback) {
-    this.unsub = this.chats //When invoked will unsub from changes. Returns a function. 
+    this.unsub = this.chats //When invoked will unsub from changes. Returns a function.
       .where("room", "==", this.room)
       .orderBy("created_at", "desc")
       .onSnapshot((snapshot) => {
@@ -37,30 +37,19 @@ class ChatRoom {
   }
   updateRoom(room) {
     this.room = room;
-    this.unsub()
+    if (this.unsub()) {
+      this.unsub();
+    }
   }
 }
+
 const chatroom = new ChatRoom("general", "Dmitriy");
-chatroom
-  .addChat("First Message")
-  .then(() => console.log("chat added"))
-  .catch((err) => console.log(err));
-const chatroom2 = new ChatRoom("general", "robot");
-chatroom2.getChats((data) => console.log(data));
 
-/*
-Adding New Chat Documents To The Chat Collection with Async Method 
-Setting Up a Real Time Listener To Get New Chats Whenever They're Added To The DB. Not Async. 
-Updating The Username After Submitting An Update
-Updating The Room Upon Clicking 
-
-Notes
-  docChanges returns an Array with changes. 
-  forEach is called on the Array
-where()
-  The method allows us to get documents from a certain collection where a certain condition is true.
-  Arguments
-    1. The property we want to assess
-    2. Operator like "==" We use double equals in FireStore not triple equals. 
-    3. The property we want to compare to.
-*/
+setTimeout(() => {
+  chatroom.updateRoom("general");
+  chatroom.updateName("dmitriy");
+  chatroom.getChats((data) => {
+    console.log(data);
+  });
+  chatroom.addChat("Hello");
+}, 3000);

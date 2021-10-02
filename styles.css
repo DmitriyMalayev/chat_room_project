@@ -13,4 +13,17 @@
   outline: none !important;
 }
 
+.username {
+  font-weight: bold;
+}
+
+.time {
+  font-size: 0.7em;
+  color: lightgrey;
+}
+.update-message {
+  text-align: center;
+  margin: 20px auto 20px;
+}
+
 /* We use !important to override any previous styling. */

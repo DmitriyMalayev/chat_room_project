@@ -25,11 +25,9 @@
         <button class="btn" id="audiobooks">#audiobooks</button>
         <button class="btn" id="music">#music</button>
         <button class="btn" id="movies">#movies</button>
-        <button class="btn" id="tv_shows">#tv_shows</button>
       </div>
 
       <!-- Chat List / Window -->
-
       <div class="chat-window">
         <ul class="chat-list list-group"></ul>
       </div>
@@ -61,6 +59,7 @@
         <div class="update-message"></div>
       </form>
     </div>
+    <script src="https://cdn.date-fns.org/v1.9.0/date_fns.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
     <script>
@@ -78,7 +77,7 @@
       const db = firebase.firestore(); //initializing the firestore connection
     </script>
     <script src="app.js"></script>
-    <script src="chat.js"></script>
-    <script src="ui.js"></script>
+    <script src="chat_room.js"></script>
+    <script src="chat_user_inferface.js"></script>
   </body>
 </html>
